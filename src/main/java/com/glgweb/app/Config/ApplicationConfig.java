@@ -38,7 +38,7 @@ public AuthenticationProvider authenticationProvider(){
 }
 @Bean
     public UserDetailsService userDetailService(){
-    return username -> userRepository.findByUserName(username)
+    return username -> userRepository.findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 }
 
