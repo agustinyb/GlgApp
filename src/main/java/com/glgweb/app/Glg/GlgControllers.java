@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/")
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class GlgControllers {
 
     @Autowired
     private GlgServices glgServices;
-
+    //@CrossOrigin("http://127.0.0.1:5500")
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PostMapping(value = "saveimpo")
     public GlgModels saveIncomeImpo (@RequestBody GlgModels glgModels, @RequestHeader HttpHeaders headers) {
         System.out.println(headers.get("User- Agent"));
-        return GlgServices.saveData(glgModels);
+        return glgServices.saveData(glgModels);
     }
 }
 

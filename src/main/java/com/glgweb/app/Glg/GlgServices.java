@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 @NoArgsConstructor
 public class GlgServices {
 
-   private static GlgRepository glgRepository;
+    @Autowired
+    private GlgRepository glgRepository;
 
- public static GlgModels saveData(GlgModels glgModels){
-     return glgRepository.save(glgModels);
- }
+    public GlgModels saveData(GlgModels glgModels) {
+        return glgRepository.save(glgModels);
+    }
 }
