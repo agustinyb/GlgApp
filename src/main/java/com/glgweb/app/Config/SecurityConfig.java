@@ -1,7 +1,11 @@
 package com.glgweb.app.Config;
 
 import com.glgweb.app.Jwt.JwtAuthenticationFilter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -16,6 +20,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Arrays;
+
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -27,24 +33,13 @@ public class SecurityConfig {
     private final AuthenticationProvider authProvider;
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("*"); // Reemplaza con tu origen permitido
-        configuration.addAllowedMethod("*"); // Puedes configurar los métodos que permites
-        configuration.addAllowedHeader("*"); // Puedes configurar los encabezados que permites
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(csrf ->
-                        csrf
-                                .disable())
+    protected SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
+                .and()
+                .csrf().disable()
                 .authorizeHttpRequests(authRequest ->
                         authRequest
+
                                 .requestMatchers("/auth/**").permitAll()
                                 .anyRequest().authenticated()
                 )
@@ -56,3 +51,6 @@ public class SecurityConfig {
                 .build();
     }
 }
+
+
+
