@@ -15,14 +15,11 @@ public class GlgServices {
         return glgRepository.save(glgModels);
     }
 
-    public Integer generateCorrelativo() {
+    public String generateCorrelativo() {
        String correlativo = glgRepository.generateCorrelativo();
-       correlativo = correlativo.substring(14,18);
-       int num = Integer.parseInt(correlativo) + 1;
-
-        return num ;
-
+       Integer correnum = Integer.parseInt(correlativo);
+       Integer corref = correnum + 1;
+       String ulticorre = "GLG/IMPO/FCL/" + corref;
+        return ulticorre ;
     }
-
-
 }

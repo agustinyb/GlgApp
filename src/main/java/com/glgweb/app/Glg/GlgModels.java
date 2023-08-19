@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "incomeimpo")
 @AllArgsConstructor
@@ -17,6 +20,7 @@ public class GlgModels {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_Impo;
     private String correlativo;
+    private LocalDateTime dateCreate= LocalDateTime.now();
     private String user_impo;
     private String mandantei;
     private String folder;

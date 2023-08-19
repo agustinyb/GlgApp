@@ -7,14 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GlgRepository extends JpaRepository <GlgModels,Long> {
 
-@Query (value = "SELECT correlativo FROM INCOMEIMPO ORDER BY CORRELATIVO DESC LIMIT 1", nativeQuery = true)
+@Query (value = "SELECT COUNT(correlativo) FROM incomeimpo", nativeQuery = true)
 String generateCorrelativo ();
-
-
-
-
-
-
-
-
 }

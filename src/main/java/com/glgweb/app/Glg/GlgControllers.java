@@ -25,7 +25,7 @@ public class GlgControllers {
         return glgServices.saveData(glgModels);
     }
         @GetMapping( "/correlativo")
-    public Integer generateCorrelativo(){
+    public String generateCorrelativo(){
 return glgServices.generateCorrelativo();
         }
 
