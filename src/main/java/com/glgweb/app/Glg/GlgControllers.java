@@ -14,14 +14,11 @@ import java.util.List;
 @RequestMapping("api/v1/")
 @AllArgsConstructor
 @NoArgsConstructor
-@CrossOrigin(origins = "*")
 public class GlgControllers {
 
     @Autowired
     private GlgServices glgServices;
 
-    //@CrossOrigin("http://127.0.0.1:5500")
-    @CrossOrigin("http://127.0.0.1:5500")
     @PostMapping(value = "saveimpo")
     public GlgModels saveIncomeImpo(@RequestBody GlgModels glgModels, @RequestHeader HttpHeaders headers) {
         System.out.println(headers.get("User- Agent"));
@@ -37,6 +34,14 @@ public class GlgControllers {
     public List<GlgModels> loadList(){
         return glgServices.loadList();
     }
+
+    //@PutMapping("/saveimpo")
+    //public GlgModels saveIncomeImpo(@RequestBody GlgModels glgModels, @RequestHeader HttpHeaders headers) {
+      //  System.out.println(headers.get("User- Agent"));
+        //return glgServices.saveData(glgModels);
+
+
+
 }
 
 
