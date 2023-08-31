@@ -21,11 +21,11 @@ public class GlgControllers {
     private GlgServices glgServices;
 
     @GetMapping("/findbyid/{id}")
-    public ResponseEntity<GlgModels> findById(@PathVariable Long id){
+    public ResponseEntity<GlgModels> findById(@PathVariable Long id) {
         Optional idOpt = glgServices.findById(id);
-        if(idOpt.isPresent()){
+        if (idOpt.isPresent()) {
             return ResponseEntity.ok((GlgModels) idOpt.get());
-        } else{
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -59,5 +59,21 @@ public class GlgControllers {
             return ResponseEntity.notFound().build();
         }
     }
-}
 
+    @DeleteMapping("/deletebyid/{id}")
+    public ResponseEntity deleteById(@PathVariable Long id) {
+        Optional<GlgModels> deleteopt = glgServices.findById(id);
+        if (deleteopt.isPresent()) {
+            glgServices.deleteById(id);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    @DeleteMapping("/deleteall")
+    public ResponseEntity deleteAll() {
+        glgServices.deleteAll();
+        return ResponseEntity.ok().build();
+    }
+
+}

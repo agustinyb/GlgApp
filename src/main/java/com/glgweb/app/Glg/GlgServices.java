@@ -19,20 +19,32 @@ public class GlgServices {
     }
 
     public String generateCorrelativo() {
-       String correlativo = glgRepository.generateCorrelativo();
-       Integer correnum = Integer.parseInt(correlativo);
-       Integer corref = correnum + 1;
-       String ulticorre = "GLG/IMPO/FCL/" + corref;
-        return ulticorre ;
+        String correlativo = glgRepository.generateCorrelativo();
+        Integer correnum = Integer.parseInt(correlativo);
+        Integer corref = correnum + 1;
+        String ulticorre = "GLG/IMPO/FCL/" + corref;
+        return ulticorre;
     }
 
- public List <GlgModels> loadList(){
+    public List<GlgModels> loadList() {
         return glgRepository.loadList();
     }
 
-    public Optional<GlgModels> findById(Long id){
+    public Optional<GlgModels> findById(Long id) {
         return glgRepository.findById(id);
     }
 
+    public void deleteById(Long id) {
+        glgRepository.deleteById(id);
+    }
+
+    public void deleteAll() {
+        glgRepository.deleteAll();
+    }
+
+    public List<GlgModels> findAll() {
+        List <GlgModels>  glgRet = glgRepository.findAll();
+        return glgRet;
+    }
 
 }
