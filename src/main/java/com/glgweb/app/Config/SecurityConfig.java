@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                         authRequest
 
-                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/swagger-ui/index.html","/auth/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager ->
